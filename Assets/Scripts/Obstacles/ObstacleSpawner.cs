@@ -8,12 +8,20 @@ public class ObstacleSpawner : MonoBehaviour
     private float moveSpeed = 1f;
     private float maxX = 5f;
     private float minY = -5f;
+    private float spd;
+    private Vector2 direction;
+    private GameObject Obstacle;
     [SerializeField]
     private GameObject[] cars;
     // int posY;
     [SerializeField]
     private float spawnInterval = 1.5f;
     // Start is called before the first frame update
+
+    public void Initialize (Vector2 dir, float spd) {
+        this.spd = spd;
+        direction = dir;
+    }
     void Start()
     {
         StartObstacleRoutine();
@@ -45,6 +53,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
     void SpawnEnemy(int index) {
         Vector3 spawnPos = new Vector3( transform.position.x , transform.position.y, transform.position.z );
-        Instantiate( cars[index], spawnPos, Quaternion.identity );
+        GameObject obstacle = Instantiate( cars[index], spawnPos, Quaternion.identity );
+        obstacle.GetComponent<Obstacle>().Initialize(direction, spd);
     }
 }
