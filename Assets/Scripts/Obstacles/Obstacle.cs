@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
     }
     void Start()
     {
-        moveSpeed = Random.Range(0, 10f);
+        
     }
 
     // Update is called once per frame
